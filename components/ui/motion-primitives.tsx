@@ -116,6 +116,33 @@ export function ScrollFadeWords({
   text: string;
   className?: string;
 }) {
+  const [animate, setAnimate] = useState(false);
+
+  /* Sur mobile le paragraphe occupe presque tout l'écran : l'effet laisserait
+     la moitié du texte illisible. On ne l'active qu'en grand écran. */
+  useEffect(() => {
+    const mq = window.matchMedia(
+      "(min-width: 1024px) and (prefers-reduced-motion: no-preference)"
+    );
+    const apply = () => setAnimate(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+
+  /* useScroll doit vivre dans un composant qui monte réellement son ref,
+     sinon Motion lève "Target ref is defined but not hydrated". */
+  if (!animate) return <p className={className}>{text}</p>;
+  return <ScrollFadeWordsAnimated text={text} className={className} />;
+}
+
+function ScrollFadeWordsAnimated({
+  text,
+  className,
+}: {
+  text: string;
+  className?: string;
+}) {
   const ref = useRef<HTMLParagraphElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -147,7 +174,7 @@ function FadeWord({
   progress: ReturnType<typeof useScroll>["scrollYProgress"];
   range: [number, number];
 }) {
-  const opacity = useTransform(progress, range, [0.14, 1]);
+  const opacity = useTransform(progress, range, [0.35, 1]);
   return (
     <motion.span style={{ opacity }} className="inline-block">
       {children}&nbsp;

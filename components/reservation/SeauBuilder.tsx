@@ -119,7 +119,7 @@ export default function SeauBuilder({
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="panel glass sticky top-20 z-20 flex flex-wrap items-center justify-between gap-4 p-5"
+          className="panel glass sticky top-[132px] z-20 flex flex-wrap items-center justify-between gap-4 p-5"
         >
           <div className="min-w-[180px] flex-1">
             <div className="flex items-baseline justify-between">

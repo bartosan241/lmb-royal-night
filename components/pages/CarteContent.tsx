@@ -43,7 +43,7 @@ export default function CarteContent() {
     <section className="py-20 sm:py-28">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
         {/* Tabs */}
-        <div className="sticky top-16 z-30 -mx-5 bg-ink/92 px-5 py-4 backdrop-blur-md sm:-mx-8 sm:px-8">
+        <div className="sticky top-[68px] z-30 -mx-5 bg-ink/95 px-5 py-4 backdrop-blur-md sm:-mx-8 sm:px-8">
           <div className="flex gap-2 overflow-x-auto pb-1">
             {TABS.map((t) => (
               <button

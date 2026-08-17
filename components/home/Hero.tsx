@@ -14,7 +14,9 @@ const SLIDES = [
 
 export default function Hero() {
   const [i, setI] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(false);
   const ref = useRef<HTMLElement>(null);
+  const touchX = useRef<number | null>(null);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -24,10 +26,35 @@ export default function Hero() {
   const yImg = useTransform(scrollYProgress, [0, 1], ["0%", "-12%"]);
   const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
+  /* Le parallaxe n'a de sens qu'en deux colonnes. En une seule colonne il fait
+     descendre le texte pendant que l'image monte : les deux se chevauchent. */
   useEffect(() => {
-    const t = setInterval(() => setI((v) => (v + 1) % SLIDES.length), 5200);
-    return () => clearInterval(t);
+    const mq = window.matchMedia(
+      "(min-width: 1024px) and (prefers-reduced-motion: no-preference)"
+    );
+    const apply = () => setIsDesktop(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
   }, []);
+
+  const go = (d: number) =>
+    setI((v) => (v + d + SLIDES.length) % SLIDES.length);
+
+  useEffect(() => {
+    const t = setInterval(() => go(1), 5200);
+    return () => clearInterval(t);
+  }, [i]);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchX.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchX.current;
+    if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+    touchX.current = null;
+  };
 
   return (
     <section
@@ -46,7 +73,10 @@ export default function Hero() {
 
       <div className="relative z-10 mx-auto grid max-w-[1600px] grid-cols-1 gap-10 px-5 pb-16 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 lg:pb-24">
         {/* ------------- Left: type block ------------- */}
-        <motion.div style={{ y: yText, opacity: fade }} className="flex flex-col justify-center pt-8 lg:pt-0">
+        <motion.div
+          style={isDesktop ? { y: yText, opacity: fade } : undefined}
+          className="flex flex-col justify-center pt-8 lg:pt-0"
+        >
           {/* meta line */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -114,13 +144,17 @@ export default function Hero() {
 
         {/* ------------- Right: image stack ------------- */}
         <motion.div
-          style={{ y: yImg }}
+          style={isDesktop ? { y: yImg } : undefined}
           initial={{ opacity: 0, scale: 1.04 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1] }}
           className="relative min-h-[340px] lg:min-h-[78vh]"
         >
-          <div className="relative h-full w-full overflow-hidden border border-line">
+          <div
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
+            className="relative h-full w-full touch-pan-y overflow-hidden border border-line select-none"
+          >
             {SLIDES.map((s, idx) => (
               <motion.div
                 key={s.src}

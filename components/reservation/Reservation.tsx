@@ -205,7 +205,7 @@ export default function Reservation() {
         {/* ---------------- Colonne principale ---------------- */}
         <div>
           {/* Stepper */}
-          <div className="sticky top-16 z-30 -mx-5 mb-10 bg-ink/92 px-5 py-4 backdrop-blur-md sm:-mx-8 sm:px-8">
+          <div className="sticky top-[68px] z-30 -mx-5 mb-10 bg-ink/95 px-5 py-4 backdrop-blur-md sm:-mx-8 sm:px-8">
             <div className="flex items-center gap-1 overflow-x-auto pb-1">
               {STEPS.map((s, i) => {
                 const done = i < step;
