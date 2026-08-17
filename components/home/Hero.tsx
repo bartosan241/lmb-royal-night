@@ -55,13 +55,12 @@ export default function Hero() {
             className="flex flex-wrap items-center gap-x-4 gap-y-2"
           >
             <span className="label border border-gold/45 px-2.5 py-1.5 text-gold">
-              EST. 2018
+              BAR · LOUNGE · CLUB
             </span>
             <span className="label text-cream/45">
               {VENUE.city.toUpperCase()} — {VENUE.country.toUpperCase()}
             </span>
             <span className="h-px flex-1 bg-line" />
-            <span className="label text-cream/45">MAR — DIM</span>
           </motion.div>
 
           {/* headline */}
@@ -89,24 +88,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-8 flex flex-col gap-7 border-t border-line pt-7 sm:flex-row sm:items-start sm:gap-10"
+            className="mt-8 border-t border-line pt-7"
           >
-            <p className="max-w-sm text-[0.95rem] leading-relaxed text-cream/60">
+            <p className="max-w-lg text-[0.95rem] leading-relaxed text-cream/60">
               Bar, lounge et club au Quartier&nbsp;Louis. Réservez votre carré,
               composez votre seau bouteille par bouteille, choisissez votre
               champagne — la table est prête avant que vous n&apos;arriviez.
             </p>
-            <div className="grid shrink-0 grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-1">
-              {[
-                ["400", "PLACES"],
-                ["6", "NUITS / SEM."],
-              ].map(([n, l]) => (
-                <div key={l}>
-                  <p className="font-display text-3xl text-cream">{n}</p>
-                  <p className="label mt-1 text-cream/40">{l}</p>
-                </div>
-              ))}
-            </div>
           </motion.div>
 
           <motion.div

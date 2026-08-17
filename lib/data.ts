@@ -354,7 +354,6 @@ export type Soiree = {
   day: string;
   name: string;
   desc: string;
-  dj: string;
   image: string;
   tag?: string;
 };
@@ -364,21 +363,18 @@ export const PROGRAMME: Soiree[] = [
     day: "Mardi",
     name: "Rumba & Zouk",
     desc: "Les classiques congolais et antillais, volume conversation. La soirée des connaisseurs.",
-    dj: "DJ Papa Wemba Jr",
     image: "/img/bar-04.jpg",
   },
   {
     day: "Mercredi",
     name: "Karaoké Royal",
     desc: "Micro ouvert, catalogue de 20 000 titres et une bouteille offerte à la meilleure performance.",
-    dj: "MC Steve",
     image: "/img/bar-12.jpg",
   },
   {
     day: "Jeudi",
     name: "Afrobeats Night",
     desc: "Burna, Wizkid, Davido, Asake. Le dancefloor ne désemplit pas avant 4h.",
-    dj: "DJ Ken 241",
     image: "/img/afro-08.jpg",
     tag: "Forte affluence",
   },
@@ -386,7 +382,6 @@ export const PROGRAMME: Soiree[] = [
     day: "Vendredi",
     name: "Ladies Night",
     desc: "Coupe de champagne offerte aux dames avant minuit. Dress code soigné exigé.",
-    dj: "DJ Malika",
     image: "/img/afro-03.jpg",
     tag: "Réservation conseillée",
   },
@@ -394,7 +389,6 @@ export const PROGRAMME: Soiree[] = [
     day: "Samedi",
     name: "Royal Saturday",
     desc: "La grande nuit. Guest DJ, lightshow complet, défilés bouteilles toute la soirée.",
-    dj: "Guest international",
     image: "/img/club-06.jpg",
     tag: "Complet chaque semaine",
   },
@@ -402,7 +396,6 @@ export const PROGRAMME: Soiree[] = [
     day: "Dimanche",
     name: "Sunday Chill",
     desc: "Terrasse, chicha, deep house et carte tapas jusqu'à 2h. Le dimanche qu'on n'a pas envie de finir.",
-    dj: "DJ Solal",
     image: "/img/chicha-04.jpg",
   },
 ];
@@ -430,35 +423,11 @@ export const GALERIE = [
   { src: "/img/afro-12.jpg", alt: "Anniversaire en loge" },
 ];
 
-export const AVIS = [
-  {
-    text: "Le seul endroit à Libreville où le service suit vraiment le niveau de la carte. On a pris la Loge Royale pour les 30 ans de mon frère, le défilé bouteille a mis toute la salle debout.",
-    name: "Steeve M.",
-    role: "Loge Royale — anniversaire",
-  },
-  {
-    text: "Réservation faite en deux minutes depuis le téléphone, confirmation sur WhatsApp dans la foulée. À l'arrivée la table était prête avec nos prénoms. Rien à dire.",
-    name: "Aline N.",
-    role: "Carré VIP — vendredi",
-  },
-  {
-    text: "Le seau de 10 Booster à composer soi-même, c'est exactement ce qu'il fallait. Chacun prend son parfum, personne ne se dispute, et l'addition reste claire.",
-    name: "Jordy B.",
-    role: "Table Lounge — entre amis",
-  },
-  {
-    text: "On y a fait notre afterwork d'entreprise. Terrasse privatisée, chicha, tapas — un cadre qui impressionne les clients sans être guindé.",
-    name: "Carine O.",
-    role: "Privatisation terrasse",
-  },
-];
-
-export const CHIFFRES = [
-  { n: 5, suffix: "", label: "Espaces privatisables" },
-  { n: 120, suffix: "+", label: "Références à la carte" },
-  { n: 6, suffix: " nuits", label: "Du mardi au dimanche" },
-  { n: 2018, suffix: "", label: "Maison fondée en", raw: true },
-];
+/**
+ * Pas d'avis clients ni de chiffres de fréquentation ici : tout cela doit venir
+ * de la direction (vrais avis Google/Facebook, capacité réelle de la salle).
+ * Rien n'est inventé sur cette page.
+ */
 
 export const FAQ = [
   {

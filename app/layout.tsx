@@ -3,7 +3,7 @@ import { Anton, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { Preloader, CustomCursor, ScrollProgress, Atmosphere } from "@/components/ui/chrome";
+import { Preloader, ScrollProgress, Atmosphere } from "@/components/ui/chrome";
 import { VENUE } from "@/lib/data";
 
 const anton = Anton({
@@ -85,7 +85,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <Preloader />
-        <CustomCursor />
         <ScrollProgress />
         <Atmosphere />
         <Header />

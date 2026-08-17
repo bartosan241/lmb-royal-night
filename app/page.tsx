@@ -7,7 +7,6 @@ import {
   ChampagneSection,
   ProgrammeSection,
   GaleriePreview,
-  AvisSection,
   FaqSection,
   FinalCta,
 } from "@/components/home/sections";
@@ -23,7 +22,6 @@ export default function Home() {
       <ChampagneSection />
       <ProgrammeSection />
       <GaleriePreview />
-      <AvisSection />
       <FaqSection />
       <FinalCta />
     </>

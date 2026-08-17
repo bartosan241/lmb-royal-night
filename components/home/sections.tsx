@@ -7,7 +7,6 @@ import {
   Reveal,
   ScrollFadeWords,
   Marquee,
-  Counter,
   TiltCard,
   ParallaxImage,
   Spotlight,
@@ -18,8 +17,6 @@ import {
   SEAUX,
   CHAMPAGNES,
   PROGRAMME,
-  CHIFFRES,
-  AVIS,
   GALERIE,
   FAQ,
   BOUTEILLES,
@@ -71,16 +68,6 @@ export function Intro() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.2}>
-            <div className="glass panel absolute -bottom-8 -right-4 w-52 p-6 sm:-right-10 sm:w-64">
-              <p className="font-display text-4xl text-gold">
-                <Counter to={400} />
-              </p>
-              <p className="mt-2 text-[0.7rem] uppercase tracking-[0.2em] text-cream/50">
-                places assises réparties sur trois ambiances
-              </p>
-            </div>
-          </Reveal>
         </div>
 
         <div>
@@ -90,7 +77,7 @@ export function Intro() {
             label="La maison"
             title={
               <>
-                Une adresse pour ceux                 qui <em className="text-gold">savent recevoir</em>
+Une adresse pour ceux qui <em className="text-gold">savent recevoir</em>
               </>
             }
           />
@@ -101,26 +88,13 @@ export function Intro() {
             />
           </div>
           <Reveal delay={0.2}>
-            <p className="mt-6 text-[0.92rem] leading-relaxed text-cream/45">
-              Trois espaces, une cave à champagne, une terrasse chicha et une
-              programmation six nuits sur sept. Du dîner tardif entre amis à la
+            <p className="mt-6 border-t border-line pt-6 text-[0.92rem] leading-relaxed text-cream/45">
+              Plusieurs espaces, une cave à champagne, une terrasse chicha et
+              une programmation régulière. Du dîner tardif entre amis à la
               privatisation d&apos;entreprise, la maison s&apos;adapte — sans
               jamais baisser le niveau de service.
             </p>
           </Reveal>
-
-          <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-line pt-10 sm:grid-cols-4 lg:grid-cols-2">
-            {CHIFFRES.map((c) => (
-              <Reveal key={c.label} delay={0.1}>
-                <p className="font-display text-3xl text-gold">
-                  <Counter to={c.n} suffix={c.suffix} raw={"raw" in c && !!c.raw} />
-                </p>
-                <p className="mt-1.5 text-[0.68rem] uppercase tracking-[0.18em] text-cream/40">
-                  {c.label}
-                </p>
-              </Reveal>
-            ))}
-          </div>
 
           <Reveal delay={0.25}>
             <div className="mt-10">
@@ -517,9 +491,6 @@ export function ProgrammeSection() {
                 <p className="max-w-sm text-[0.83rem] leading-relaxed text-cream/40 lg:max-w-md">
                   {p.desc}
                 </p>
-                <span className="hidden w-40 shrink-0 text-right text-[0.7rem] tracking-[0.12em] text-cream/35 lg:block">
-                  {p.dj}
-                </span>
               </Link>
             </Reveal>
           ))}
@@ -575,64 +546,6 @@ export function GaleriePreview() {
   );
 }
 
-/* ================================================================== */
-/*  Avis                                                               */
-/* ================================================================== */
-
-export function AvisSection() {
-  const [i, setI] = useState(0);
-  const a = AVIS[i];
-
-  return (
-    <section className="relative overflow-hidden py-28 sm:py-36">
-      <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
-        <Reveal>
-          <span className="font-display block text-7xl leading-none text-gold/25">
-            &ldquo;
-          </span>
-        </Reveal>
-
-        <motion.blockquote
-          key={i}
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-2 text-xl leading-[1.55] font-medium text-cream/90 sm:text-2xl"
-        >
-          {a.text}
-        </motion.blockquote>
-
-        <motion.div
-          key={i + "-a"}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="mt-8"
-        >
-          <p className="label text-gold">{a.name}</p>
-          <p className="label mt-2 text-cream/35">{a.role}</p>
-        </motion.div>
-
-        <div className="mt-10 flex justify-center gap-2.5">
-          {AVIS.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setI(idx)}
-              aria-label={`Avis ${idx + 1}`}
-              className="py-3"
-            >
-              <span
-                className={`block h-px transition-all duration-500 ${
-                  i === idx ? "w-10 bg-gold" : "w-5 bg-cream/20"
-                }`}
-              />
-            </button>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ================================================================== */
 /*  FAQ                                                                */

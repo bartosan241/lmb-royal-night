@@ -69,17 +69,7 @@ export default function Page() {
                   <Reveal delay={0.16}>
                     <div className="mt-8 flex flex-wrap gap-x-12 gap-y-4 border-y border-line py-6">
                       <div>
-                        <p className="text-[0.6rem] uppercase tracking-[0.2em] text-cream/35">
-                          Aux platines
-                        </p>
-                        <p className="font-display mt-1.5 text-lg text-cream">
-                          {p.dj}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-[0.6rem] uppercase tracking-[0.2em] text-cream/35">
-                          Horaires
-                        </p>
+                        <p className="label text-cream/35">Horaires</p>
                         <p className="font-display mt-1.5 text-lg text-gold">
                           {VENUE.hours.find((h) => h.d === p.day)?.h ?? "—"}
                         </p>
