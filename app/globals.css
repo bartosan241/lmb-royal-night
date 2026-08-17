@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+@theme {
+  /* Graphic near-black rather than blue-black: reads as printed ink. */
+  --color-ink: #0a0a0b;
+  --color-ink-2: #101012;
+  --color-ink-3: #17171a;
+  --color-line: #2a2a2e;
+
+  /* Deeper, metallic gold — not pastel champagne. */
+  --color-gold: #c9a227;
+  --color-gold-light: #e8c86a;
+  --color-gold-deep: #8a6d15;
+
+  --color-cream: #f3f1ec;
+  --color-muted: #86847e;
+  --color-ember: #e2483d;
+
+  --font-display: var(--font-anton), "Arial Narrow", sans-serif;
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-jb), ui-monospace, monospace;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-ink);
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: #0a0a0b;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0b;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold-deep);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Type system — poster display, mono labels                          */
+/* ------------------------------------------------------------------ */
+
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 400; /* Anton ships a single weight */
+  text-transform: uppercase;
+  line-height: 0.86;
+  letter-spacing: -0.015em;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* Anton has no italic cut — the browser would synthesise a skewed oblique.
+   <em> inside a headline means "second half, in gold", not "slanted". */
+.font-display em,
+.font-display i {
+  font-style: normal;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* Numbers must never be ambiguous on prices. */
+input,
+select,
+textarea,
+.tabular {
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* Ticket-stub micro label */
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.hero-type {
+  font-size: clamp(3.2rem, 12vw, 11rem);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Surfaces — hard edges, visible grid                                */
+/* ------------------------------------------------------------------ */
+
+.rule {
+  border-color: var(--color-line);
+}
+
+.panel {
+  background: var(--color-ink-2);
+  border: 1px solid var(--color-line);
+}
+
+.glass {
+  background: color-mix(in srgb, #0a0a0b 82%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Diagonal hatch used for "unavailable" and decorative blocks */
+.hatch {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5px,
+    color-mix(in srgb, var(--color-gold) 14%, transparent) 5px,
+    color-mix(in srgb, var(--color-gold) 14%, transparent) 6px
+  );
+}
+
+/* Film grain */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Marquee text outline for poster depth */
+.outline-type {
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--color-cream) 26%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus visibility is non-negotiable, including on the dark ground. */
+:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cursor-none-desktop,
+  .cursor-none-desktop * {
+    cursor: none;
+  }
+}
